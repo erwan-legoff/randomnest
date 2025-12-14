@@ -3,6 +3,7 @@ import { RandomServiceContract } from './random.service.contract';
 import { Item } from './types/Item';
 import { ItemRepository } from './item.repository';
 import { Collection } from './types/Collection';
+import { differenceInMinutes } from 'date-fns';
 
 @Injectable()
 export class RandomService implements RandomServiceContract {
@@ -20,8 +21,14 @@ export class RandomService implements RandomServiceContract {
   }
 
   computeScore(item: Item, collection: Collection): number {
-    const score = 1;
+    let score = 1;
     if (item.id === collection.lastItemId) return 0;
+    const hoursLastRead =
+      differenceInMinutes(collection.lastReadDate, item.lastReadDate) / 60;
+    score += hoursLastRead;
+    const averageReadCount = collection.readCount / collection.items.length;
+    const readCountDifference = averageReadCount - item.readCount;
+    score += readCountDifference;
     return score;
   }
 }
