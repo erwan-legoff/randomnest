@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { RandomServiceContract } from './random.service.contract';
 import { Item } from './types/Item';
 import { ItemRepository } from './item.repository';
+import { Collection } from './types/Collection';
 
 @Injectable()
 export class RandomService implements RandomServiceContract {
@@ -16,5 +17,11 @@ export class RandomService implements RandomServiceContract {
     }
     const randomId = Math.random() * items.length - 1;
     return this.itemRepository.getItem(randomId, collectionId);
+  }
+
+  computeScore(item: Item, collection: Collection): number {
+    const score = 1;
+    if (item.id === collection.lastItemId) return 0;
+    return score;
   }
 }
