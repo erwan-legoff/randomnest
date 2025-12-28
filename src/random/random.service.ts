@@ -11,11 +11,12 @@ import { SkipRatioScoreConfig } from './scoreConfigs/SkipRatioScoreConfig';
 
 @Injectable()
 export class RandomService implements RandomServiceContract {
-  private readonly readCountScoreConfig = new ReadCountScoreConfig();
-  private readonly lastReadScoreConfig = new LastReadScoreConfig();
-  private readonly skipRatioScoreConfig = new SkipRatioScoreConfig();
-
-  constructor(private readonly itemRepository: ItemRepository) {}
+  constructor(
+    private readonly itemRepository: ItemRepository,
+    private readonly readCountScoreConfig: ReadCountScoreConfig,
+    private readonly lastReadScoreConfig: LastReadScoreConfig,
+    private readonly skipRatioScoreConfig: SkipRatioScoreConfig,
+  ) {}
   async getNextRandomItem(collectionId: number): Promise<Item> {
     const collection = await this.itemRepository.getCollection(collectionId);
     const items = collection.items;
