@@ -1,7 +1,9 @@
+import { Injectable } from '@nestjs/common';
 import { Collection } from './types/Collection';
 import type { ItemRepository as ItemRepositoryContract } from './item-repository.contract';
 import { Item } from './types/Item';
 
+@Injectable()
 export class ItemRepository implements ItemRepositoryContract {
   private itemCollections: Map<number, Collection> = new Map();
 

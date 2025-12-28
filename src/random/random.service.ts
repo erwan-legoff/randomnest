@@ -24,7 +24,7 @@ export class RandomService implements RandomServiceContract {
       const probability = 1 / items.length;
       probabilities.set(item.id, probability);
     }
-    const randomId = Math.random() * items.length - 1;
+    const randomId = Math.round(Math.max(0, Math.random() * items.length - 1));
     return this.itemRepository.getItem(randomId, collectionId);
   }
 
