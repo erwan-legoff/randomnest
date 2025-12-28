@@ -7,5 +7,6 @@ export interface Collection {
   lastItemId: number;
   readCount: number;
   readDuration: number;
+  averageSkipRatio: number;
   items: Item[];
 }

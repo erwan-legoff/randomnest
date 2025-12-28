@@ -7,11 +7,13 @@ import { differenceInMinutes } from 'date-fns';
 import { safeRatio } from 'src/maths/mathsUtils';
 import { ReadCountScoreConfig } from './scoreConfigs/ReadCountScoreConfig';
 import { LastReadScoreConfig } from './scoreConfigs/LastReadScoreConfig';
+import { SkipRatioScoreConfig } from './scoreConfigs/SkipRatioScoreConfig';
 
 @Injectable()
 export class RandomService implements RandomServiceContract {
   private readonly readCountScoreConfig = new ReadCountScoreConfig();
   private readonly lastReadScoreConfig = new LastReadScoreConfig();
+  private readonly skipRatioScoreConfig = new SkipRatioScoreConfig();
 
   constructor(private readonly itemRepository: ItemRepository) {}
   async getNextRandomItem(collectionId: number): Promise<Item> {
@@ -33,13 +35,15 @@ export class RandomService implements RandomServiceContract {
     score += this.calculateLastReadScore(item, collection);
 
     score += this.calculateReadCountScore(collection, item);
+
+    score += this.calculateSkipScore(collection, item);
     return score;
   }
 
   private calculateReadCountScore(collection: Collection, item: Item) {
     const averageReadCount = collection.readCount / collection.items.length;
     const readCountDifference = averageReadCount - item.readCount;
-    return this.safeRatioWeigthed(
+    return this.safeRatioWeighted(
       readCountDifference,
       averageReadCount,
       this.readCountScoreConfig,
@@ -50,14 +54,23 @@ export class RandomService implements RandomServiceContract {
     const lastReadHours =
       differenceInMinutes(item.lastReadDate, new Date()) / 60;
     const deltaBetweenAverage = collection.averageLastReadHours - lastReadHours;
-    return this.safeRatioWeigthed(
+    return this.safeRatioWeighted(
       deltaBetweenAverage,
       collection.averageLastReadHours,
       this.lastReadScoreConfig,
     );
   }
 
-  private safeRatioWeigthed(
+  private calculateSkipScore(collection: Collection, item: Item) {
+    const skipRatio = safeRatio(item.skipCount, item.readCount, 0);
+    return this.safeRatioWeighted(
+      skipRatio,
+      collection.averageSkipRatio,
+      this.skipRatioScoreConfig,
+    );
+  }
+
+  private safeRatioWeighted(
     numerator: number,
     denominator: number,
     config: { defaultSafeValue: number; weightingFactor: number },

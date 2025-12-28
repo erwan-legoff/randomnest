@@ -4,6 +4,7 @@ export interface Item {
   lastReadDate: Date;
   manualReadCount: number;
   readCount: number;
+  skipCount: number;
   readDuration: number;
   userNotation: number;
   autoNotation: number;
