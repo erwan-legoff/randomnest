@@ -14,7 +14,7 @@ Au lieu de “shuffle” uniforme, Randomnest attribue à chaque morceau un **sc
 
 Le cœur de Randomnest s'appuie sur une architecture modulaire décrite dans le diagramme de classes suivant :
 
-![Diagramme de classes du domaine](diagramme.png)
+![Diagramme de classes du domaine](diagram.png)
 
 > _Note : Le diagramme est défini dans `src/diagramme.puml`._
 
