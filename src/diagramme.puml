@@ -1,0 +1,88 @@
+@startuml randomnest
+hide circle
+skinparam classAttributeIconSize 0
+
+package "Domain (Alpha)" {
+
+  ' Placeholder (domaine) pour éviter de tirer tout le package Scoring ici
+  class ScoreContext
+
+  interface IItem {
+    +getId(): String
+    +getName(): String
+  }
+
+  interface IScorable {
+    +calculateScore(ctx: ScoreContext): float
+    +getScoreDependencies(): List<IScorable>
+  }
+
+  interface IScorableItem extends IItem, IScorable
+
+  interface ScoreAttribute extends IScorable {
+    +getName(): String
+  }
+
+  class Music implements IScorableItem {
+    -artist: Artist
+    -style: Style
+    -attributes: List<ScoreAttribute>
+
+    +getId(): String
+    +getName(): String
+    +calculateScore(ctx: ScoreContext): float
+    +getScoreDependencies(): List<IScorable>
+  }
+
+  class Artist implements IScorableItem {
+    -attributes: List<ScoreAttribute>
+
+    +getId(): String
+    +getName(): String
+    +calculateScore(ctx: ScoreContext): float
+    +getScoreDependencies(): List<IScorable>
+  }
+
+  class Style implements IScorableItem {
+    -attributes: List<ScoreAttribute>
+
+    +getId(): String
+    +getName(): String
+    +calculateScore(ctx: ScoreContext): float
+    +getScoreDependencies(): List<IScorable>
+  }
+
+  class RecencyAttribute implements ScoreAttribute {
+    +getName(): String
+    +calculateScore(ctx: ScoreContext): float
+    +getScoreDependencies(): List<IScorable>
+  }
+
+  class PlayCountAttribute implements ScoreAttribute {
+    +getName(): String
+    +calculateScore(ctx: ScoreContext): float
+    +getScoreDependencies(): List<IScorable>
+  }
+
+  class LikeAttribute implements ScoreAttribute {
+    +getName(): String
+    +calculateScore(ctx: ScoreContext): float
+    +getScoreDependencies(): List<IScorable>
+  }
+
+  class Playlist {
+    -tracks: List<Music>
+    +getTracks(): List<Music>
+  }
+}
+
+Playlist o-- "0..*" Music : tracks
+
+Music o-- Artist : artist
+Music o-- Style : style
+
+Music o-- "0..*" ScoreAttribute : attributes
+Artist o-- "0..*" ScoreAttribute : attributes
+Style o-- "0..*" ScoreAttribute : attributes
+
+@enduml
