@@ -1,5 +1,5 @@
 import { IScorable } from './IScorable';
 
-export interface IscoreAttribute extends IScorable {
+export interface IScoreAttribute extends IScorable {
   getName(): string;
 }

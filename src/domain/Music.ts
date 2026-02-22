@@ -1,14 +1,14 @@
-import { Style } from 'util';
+import { Style } from './Style';
 import { Artist } from './Artist';
 import { IScorable } from './IScorable';
 import { IScorableItem } from './IScorableItem';
 import { ScoreContext } from './ScoreContext';
-import { IscoreAttribute } from './IScoreAttribute';
+import { IScoreAttribute } from './IScoreAttribute';
 
 export class Music implements IScorableItem {
   artist: Artist;
   style: Style;
-  attributes: Array<IscoreAttribute>;
+  attributes: Array<IScoreAttribute>;
   constructor(artist: Artist) {
     this.artist = artist;
   }
