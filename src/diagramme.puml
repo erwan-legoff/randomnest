@@ -19,14 +19,14 @@ package "Domain (Alpha)" {
 
   interface IScorableItem extends IItem, IScorable
 
-  interface ScoreAttribute extends IScorable {
+  interface IScoreAttribute extends IScorable {
     +getName(): String
   }
 
   class Music implements IScorableItem {
     -artist: Artist
     -style: Style
-    -attributes: List<ScoreAttribute>
+    -attributes: List<IScoreAttribute>
 
     +getId(): String
     +getName(): String
@@ -35,7 +35,7 @@ package "Domain (Alpha)" {
   }
 
   class Artist implements IScorableItem {
-    -attributes: List<ScoreAttribute>
+    -attributes: List<IScoreAttribute>
 
     +getId(): String
     +getName(): String
@@ -44,7 +44,7 @@ package "Domain (Alpha)" {
   }
 
   class Style implements IScorableItem {
-    -attributes: List<ScoreAttribute>
+    -attributes: List<IScoreAttribute>
 
     +getId(): String
     +getName(): String
@@ -52,19 +52,19 @@ package "Domain (Alpha)" {
     +getScoreDependencies(): List<IScorable>
   }
 
-  class RecencyAttribute implements ScoreAttribute {
+  class RecencyAttribute implements IScoreAttribute {
     +getName(): String
     +calculateScore(ctx: ScoreContext): float
     +getScoreDependencies(): List<IScorable>
   }
 
-  class PlayCountAttribute implements ScoreAttribute {
+  class PlayCountAttribute implements IScoreAttribute {
     +getName(): String
     +calculateScore(ctx: ScoreContext): float
     +getScoreDependencies(): List<IScorable>
   }
 
-  class LikeAttribute implements ScoreAttribute {
+  class LikeAttribute implements IScoreAttribute {
     +getName(): String
     +calculateScore(ctx: ScoreContext): float
     +getScoreDependencies(): List<IScorable>
@@ -81,8 +81,8 @@ Playlist o-- "0..*" Music : tracks
 Music o-- Artist : artist
 Music o-- Style : style
 
-Music o-- "0..*" ScoreAttribute : attributes
-Artist o-- "0..*" ScoreAttribute : attributes
-Style o-- "0..*" ScoreAttribute : attributes
+Music o-- "0..*" IScoreAttribute : attributes
+Artist o-- "0..*" IScoreAttribute : attributes
+Style o-- "0..*" IScoreAttribute : attributes
 
 @enduml
