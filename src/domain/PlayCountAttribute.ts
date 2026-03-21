@@ -8,7 +8,7 @@ export class PlayCountAttribute implements IScoreAttribute {
   }
 
   calculateScore(_context: ScoreContext): number {
-    throw new Error('Method not implemented.');
+    return 2;
   }
 
   getScoreDependencies(): Array<IScorable> {

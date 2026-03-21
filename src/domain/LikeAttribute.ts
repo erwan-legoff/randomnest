@@ -8,7 +8,7 @@ export class LikeAttribute implements IScoreAttribute {
   }
 
   calculateScore(_context: ScoreContext): number {
-    throw new Error('Method not implemented.');
+    return 1;
   }
 
   getScoreDependencies(): Array<IScorable> {

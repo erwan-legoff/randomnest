@@ -21,7 +21,14 @@ export class Music implements IMusic {
   }
 
   calculateScore(_context: ScoreContext): number {
-    throw new Error('Method not implemented.');
+    return (
+      this.artist.calculateScore(_context) +
+      this.style.calculateScore(_context) +
+      this.attributes.reduce(
+        (score, attribute) => score + attribute.calculateScore(_context),
+        0,
+      )
+    );
   }
 
   getScoreDependencies(): Array<IScorable> {

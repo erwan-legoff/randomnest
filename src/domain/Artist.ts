@@ -4,7 +4,10 @@ import { ScoreContext } from './ScoreContext';
 
 export class Artist implements IScorableItem {
   calculateScore(_context: ScoreContext): number {
-    throw new Error('Method not implemented.');
+    return this.getScoreDependencies().reduce(
+      (score, dependency) => score + dependency.calculateScore(_context),
+      0,
+    );
   }
 
   getScoreDependencies(): Array<IScorable> {

@@ -8,10 +8,10 @@ export class RecencyAttribute implements IScoreAttribute {
   }
 
   calculateScore(_context: ScoreContext): number {
-    throw new Error('Method not implemented.');
+    return 5;
   }
 
   getScoreDependencies(): Array<IScorable> {
-    throw new Error('Method not implemented.');
+    return [];
   }
 }

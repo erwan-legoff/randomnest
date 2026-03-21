@@ -13,11 +13,14 @@ export class Style implements IScorableItem {
   }
 
   calculateScore(_context: ScoreContext): number {
-    throw new Error('Method not implemented.');
+    return this.scorables.reduce(
+      (score, scorable) => score + scorable.calculateScore(_context),
+      0,
+    );
   }
 
   getScoreDependencies(): Array<IScorable> {
-    throw new Error('Method not implemented.');
+    return this.scorables;
   }
 
   getId(): string {
