@@ -12,25 +12,23 @@ export class Style implements IScorableItem {
     this.name = name;
   }
 
-  calculateScore(context: ScoreContext): number {
-    return this.scorables.reduce((total, scorable) => {
-      return total + scorable.calculateScore(context);
-    }, 0);
+  calculateScore(_context: ScoreContext): number {
+    throw new Error('Method not implemented.');
   }
 
   getScoreDependencies(): Array<IScorable> {
-    return this.scorables;
+    throw new Error('Method not implemented.');
   }
 
   getId(): string {
-    return this.id;
+    throw new Error('Method not implemented.');
   }
 
   getName(): string {
-    return this.name;
+    throw new Error('Method not implemented.');
   }
 
-  addScorable(scorable: IScorable): void {
-    this.scorables.push(scorable);
+  addScorable(_scorable: IScorable): void {
+    throw new Error('Method not implemented.');
   }
 }
