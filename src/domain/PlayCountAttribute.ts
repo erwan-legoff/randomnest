@@ -1,5 +1,6 @@
 import { IScoreAttribute } from './IScoreAttribute';
 import { IScorable } from './IScorable';
+import { ScoreComputeService } from './ScoreComputeService';
 import { ScoreContext } from './ScoreContext';
 
 export class PlayCountAttribute implements IScoreAttribute {
@@ -8,7 +9,10 @@ export class PlayCountAttribute implements IScoreAttribute {
   }
 
   calculateScore(_context: ScoreContext): number {
-    return 2;
+    return new ScoreComputeService().computeNormalizedCountScore(
+      _context.collection.playCounts,
+      _context.current.playCounts,
+    );
   }
 
   getScoreDependencies(): Array<IScorable> {

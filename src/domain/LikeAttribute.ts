@@ -1,5 +1,6 @@
 import { IScoreAttribute } from './IScoreAttribute';
 import { IScorable } from './IScorable';
+import { ScoreComputeService } from './ScoreComputeService';
 import { ScoreContext } from './ScoreContext';
 
 export class LikeAttribute implements IScoreAttribute {
@@ -8,7 +9,10 @@ export class LikeAttribute implements IScoreAttribute {
   }
 
   calculateScore(_context: ScoreContext): number {
-    return 1;
+    return new ScoreComputeService().computeNormalizedCountScore(
+      _context.collection.likes,
+      _context.current.likes,
+    );
   }
 
   getScoreDependencies(): Array<IScorable> {
