@@ -8,10 +8,10 @@ export class PlayCountAttribute implements IScoreAttribute {
     return 'Play Count';
   }
 
-  calculateScore(_context: ScoreContext): number {
+  calculateScore(context: ScoreContext): number {
     return new ScoreComputeService().computeNormalizedCountScore(
-      _context.collection.playCounts,
-      _context.current.playCounts,
+      context.collection.playCounts,
+      context.current.playCounts,
     );
   }
 

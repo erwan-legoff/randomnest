@@ -3,15 +3,15 @@ import { IScorableItem } from './IScorableItem';
 import { ScoreContext } from '../context/ScoreContext';
 
 export class Artist implements IScorableItem {
-  calculateScore(_context: ScoreContext): number {
+  calculateScore(context: ScoreContext): number {
     return this.getScoreDependencies().reduce(
-      (score, dependency) => score + dependency.calculateScore(_context),
+      (score, dependency) => score + dependency.calculateScore(context),
       0,
     );
   }
 
   getScoreDependencies(): Array<IScorable> {
-    throw new Error('Method not implemented.');
+    return [];
   }
 
   getId(): string {
@@ -19,6 +19,6 @@ export class Artist implements IScorableItem {
   }
 
   getName(): string {
-    throw new Error('Method not implemented.');
+    return 'Artist';
   }
 }

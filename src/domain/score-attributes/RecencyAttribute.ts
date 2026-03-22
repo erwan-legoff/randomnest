@@ -7,7 +7,7 @@ export class RecencyAttribute implements IScoreAttribute {
     return 'Recency score';
   }
 
-  calculateScore(_context: ScoreContext): number {
+  calculateScore(context: ScoreContext): number {
     return 5;
   }
 

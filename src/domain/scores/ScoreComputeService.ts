@@ -3,9 +3,9 @@ import { IScoreComputeService } from './IScoreComputeService';
 
 export class ScoreComputeService implements IScoreComputeService {
   computeNormalizedCountScore(
-    _contexStat: IContextStat,
+    contextStat: IContextStat,
     count: number,
   ): number {
-    return count / _contexStat.average;
+    return count / contextStat.average;
   }
 }

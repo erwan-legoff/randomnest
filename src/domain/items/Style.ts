@@ -12,9 +12,9 @@ export class Style implements IScorableItem {
     this.name = name;
   }
 
-  calculateScore(_context: ScoreContext): number {
+  calculateScore(context: ScoreContext): number {
     return this.scorables.reduce(
-      (score, scorable) => score + scorable.calculateScore(_context),
+      (score, scorable) => score + scorable.calculateScore(context),
       0,
     );
   }
@@ -24,14 +24,14 @@ export class Style implements IScorableItem {
   }
 
   getId(): string {
-    throw new Error('Method not implemented.');
+    return this.id;
   }
 
   getName(): string {
-    throw new Error('Method not implemented.');
+    return this.name;
   }
 
-  addScorable(_scorable: IScorable): void {
-    throw new Error('Method not implemented.');
+  addScorable(scorable: IScorable): void {
+    this.scorables.push(scorable);
   }
 }

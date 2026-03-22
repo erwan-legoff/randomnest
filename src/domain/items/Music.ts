@@ -20,12 +20,12 @@ export class Music implements IMusic {
     this.attributes = attributes;
   }
 
-  calculateScore(_context: ScoreContext): number {
+  calculateScore(context: ScoreContext): number {
     return (
-      this.artist.calculateScore(_context) +
-      this.style.calculateScore(_context) +
+      this.artist.calculateScore(context) +
+      this.style.calculateScore(context) +
       this.attributes.reduce(
-        (score, attribute) => score + attribute.calculateScore(_context),
+        (score, attribute) => score + attribute.calculateScore(context),
         0,
       )
     );

@@ -8,10 +8,10 @@ export class LikeAttribute implements IScoreAttribute {
     return 'Likes';
   }
 
-  calculateScore(_context: ScoreContext): number {
+  calculateScore(context: ScoreContext): number {
     return new ScoreComputeService().computeNormalizedCountScore(
-      _context.collection.likes,
-      _context.current.likes,
+      context.collection.likes,
+      context.current.likes,
     );
   }
 
