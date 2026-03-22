@@ -5,7 +5,7 @@ import { ScoreContext } from '../context/ScoreContext';
 
 export class LikeAttribute implements IScoreAttribute {
   getName(): string {
-    throw new Error('Method not implemented.');
+    return 'Likes';
   }
 
   calculateScore(_context: ScoreContext): number {
@@ -16,6 +16,6 @@ export class LikeAttribute implements IScoreAttribute {
   }
 
   getScoreDependencies(): Array<IScorable> {
-    throw new Error('Method not implemented.');
+    return [];
   }
 }

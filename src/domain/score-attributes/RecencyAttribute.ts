@@ -4,7 +4,7 @@ import { ScoreContext } from '../context/ScoreContext';
 
 export class RecencyAttribute implements IScoreAttribute {
   getName(): string {
-    throw new Error('Method not implemented.');
+    return 'Recency score';
   }
 
   calculateScore(_context: ScoreContext): number {

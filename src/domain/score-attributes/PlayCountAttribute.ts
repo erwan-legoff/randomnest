@@ -5,7 +5,7 @@ import { ScoreContext } from '../context/ScoreContext';
 
 export class PlayCountAttribute implements IScoreAttribute {
   getName(): string {
-    throw new Error('Method not implemented.');
+    return 'Play Count';
   }
 
   calculateScore(_context: ScoreContext): number {
@@ -16,6 +16,6 @@ export class PlayCountAttribute implements IScoreAttribute {
   }
 
   getScoreDependencies(): Array<IScorable> {
-    throw new Error('Method not implemented.');
+    return [];
   }
 }
