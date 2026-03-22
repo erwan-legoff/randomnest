@@ -2,7 +2,7 @@ import { Style } from './Style';
 import { Artist } from './Artist';
 import { IScorable } from './IScorable';
 import { ScoreContext } from './ScoreContext';
-import { IScoreAttribute } from './IScoreAttribute';
+import { IScoreAttribute } from './score-attributes/IScoreAttribute';
 import { IMusic } from './IMusic';
 
 export class Music implements IMusic {
