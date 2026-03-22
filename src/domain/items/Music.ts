@@ -1,22 +1,28 @@
-import { Style } from './Style';
-import { Artist } from './Artist';
 import { IScorable } from '../IScorable';
 import { ScoreContext } from '../context/ScoreContext';
 import { IScoreAttribute } from '../score-attributes/IScoreAttribute';
+import { Artist } from './Artist';
 import { IMusic } from './IMusic';
+import { Style } from './Style';
 
 export class Music implements IMusic {
-  public artist: Artist;
-  public style: Style;
-  public attributes: Array<IScoreAttribute>;
+  private id: string;
+  private name: string;
+  private artist: Artist;
+  private style: Style;
+  private attributes: Array<IScoreAttribute>;
 
   constructor(
+    id: string,
     artist: Artist,
     style: Style,
+    name: string = 'untitled',
     attributes: Array<IScoreAttribute> = [],
   ) {
+    this.id = id;
     this.artist = artist;
     this.style = style;
+    this.name = name;
     this.attributes = attributes;
   }
 
@@ -32,26 +38,26 @@ export class Music implements IMusic {
   }
 
   getScoreDependencies(): Array<IScorable> {
-    throw new Error('Method not implemented.');
+    return [this.artist, this.style];
   }
 
   getId(): string {
-    throw new Error('Method not implemented.');
+    return this.id;
   }
 
   getName(): string {
-    throw new Error('Method not implemented.');
+    return this.name;
   }
 
   getArtist(): Artist {
-    throw new Error('Method not implemented.');
+    return this.artist;
   }
 
   getStyle(): Style {
-    throw new Error('Method not implemented.');
+    return this.style;
   }
 
   getAttributes(): Array<IScoreAttribute> {
-    throw new Error('Method not implemented.');
+    return this.attributes;
   }
 }
