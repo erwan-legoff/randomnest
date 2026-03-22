@@ -1,4 +1,4 @@
-import { IContextStat } from './IContextStat';
+import { IContextStatCount, IContextStatDate } from './IContextStat';
 
 export class ScoreContext {
   current: {
@@ -7,8 +7,8 @@ export class ScoreContext {
     lastPlayed: number;
   };
   collection: {
-    likes: IContextStat;
-    playCounts: IContextStat;
-    lastPlayed: IContextStat;
+    likes: IContextStatCount;
+    playCounts: IContextStatCount;
+    lastPlayed: IContextStatDate;
   };
 }
