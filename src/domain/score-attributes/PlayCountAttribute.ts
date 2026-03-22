@@ -1,7 +1,7 @@
 import { IScoreAttribute } from './IScoreAttribute';
 import { IScorable } from '../IScorable';
-import { ScoreComputeService } from '../ScoreComputeService';
-import { ScoreContext } from '../ScoreContext';
+import { ScoreComputeService } from '../scores/ScoreComputeService';
+import { ScoreContext } from '../context/ScoreContext';
 
 export class PlayCountAttribute implements IScoreAttribute {
   getName(): string {

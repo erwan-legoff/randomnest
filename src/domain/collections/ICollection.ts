@@ -1,4 +1,4 @@
-import { IItem } from './IItem';
+import { IItem } from '../items/IItem';
 
 export interface ICollection {
   getItems(): Array<IItem>;

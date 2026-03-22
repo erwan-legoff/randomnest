@@ -1,5 +1,5 @@
 import { IScorableCollection } from './IScorableCollection';
-import { IScorableItem } from './IScorableItem';
+import { IScorableItem } from '../items/IScorableItem';
 
 export class Playlist implements IScorableCollection {
   public items: Array<IScorableItem> = [];

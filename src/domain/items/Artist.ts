@@ -1,6 +1,6 @@
-import { IScorable } from './IScorable';
+import { IScorable } from '../IScorable';
 import { IScorableItem } from './IScorableItem';
-import { ScoreContext } from './ScoreContext';
+import { ScoreContext } from '../context/ScoreContext';
 
 export class Artist implements IScorableItem {
   calculateScore(_context: ScoreContext): number {

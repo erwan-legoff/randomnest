@@ -1,4 +1,4 @@
-import { IContextStat } from './IContextStat';
+import { IContextStat } from '../context/IContextStat';
 import { IScoreComputeService } from './IScoreComputeService';
 
 export class ScoreComputeService implements IScoreComputeService {

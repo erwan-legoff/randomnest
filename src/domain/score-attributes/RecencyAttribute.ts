@@ -1,6 +1,6 @@
 import { IScoreAttribute } from './IScoreAttribute';
 import { IScorable } from '../IScorable';
-import { ScoreContext } from '../ScoreContext';
+import { ScoreContext } from '../context/ScoreContext';
 
 export class RecencyAttribute implements IScoreAttribute {
   getName(): string {
